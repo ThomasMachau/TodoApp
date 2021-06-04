@@ -1,4 +1,4 @@
-package de.kohler.todoApi.todoItem;
+package de.kohler.todoapi.todoItem;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
