@@ -1,4 +1,4 @@
-package de.kohler.todoapi.todoItem;
+package de.kohler.todoapi.item;
 
 import org.springframework.data.repository.CrudRepository;
 
