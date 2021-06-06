@@ -1,5 +1,6 @@
 package de.kohler.todoapi.todoItem;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,12 @@ public class TodoItemController {
             method = RequestMethod.POST,
             value = "/add"
     )
-    public @ResponseBody String addTodoItem (@RequestBody String name) {
+    public @ResponseBody String addTodoItem (@RequestBody String json) {
+        JSONObject jsonObject = new JSONObject(json);
         TodoItem item = new TodoItem();
-        item.setName(name);
+        item.setName(jsonObject.getString("name"));
         todoItemRepository.save(item);
-        return String.format("Saved %s", name);
+        return String.format("Saved %s", jsonObject);
     }
 
     @CrossOrigin(origins = "*")
