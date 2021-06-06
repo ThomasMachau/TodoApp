@@ -39,7 +39,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
+		<!-- https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin -->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator-maven-plugin</artifactId>
+			<version>5.1.1</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -48,6 +54,30 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<!-- RELEASE_VERSION -->
+				<version>5.1.1</version>
+				<!-- /RELEASE_VERSION -->
+				<executions>
+					<execution>
+						<id>spring-server</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/../api-spec/todoApi.yaml</inputSpec>
+							<generatorName>spring</generatorName>
+							<configOptions>
+								<sourceFolder>src/gen/java/main</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 

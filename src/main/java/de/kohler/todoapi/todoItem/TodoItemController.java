@@ -10,14 +10,19 @@ public class TodoItemController {
     @Autowired
     private TodoItemRepository todoItemRepository;
 
-    @PostMapping(path = "/add")
-    public @ResponseBody String addTodoItem (@RequestParam String name) {
+    @CrossOrigin(origins = "*")
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/add"
+    )
+    public @ResponseBody String addTodoItem (@RequestBody String name) {
         TodoItem item = new TodoItem();
         item.setName(name);
         todoItemRepository.save(item);
         return String.format("Saved %s", name);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<TodoItem> getAllItems() {
         return todoItemRepository.findAll();
